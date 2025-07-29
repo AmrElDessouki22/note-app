@@ -1,22 +1,39 @@
-'use client';
+"use client";
 
-import React from 'react';
+import { useState } from 'react';
+import Button from '@/components/ui/Button';
 
-type InputProps = {
+interface InputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-};
+  onAddNote?: () => void;
+}
 
-const Input: React.FC<InputProps> = ({ value, onChange, placeholder }) => {
+const Input: React.FC<InputProps> = ({ value, onChange, placeholder, onAddNote }) => {
+  const [note, setNote] = useState('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNote(e.target.value);
+  };
+
+  const handleAddNote = () => {
+    if (note.trim()) {
+      onAddNote?.();
+      setNote('');
+    }
+  };
+
   return (
-    <input 
-      type="text" 
-      value={value} 
-      onChange={onChange} 
-      placeholder={placeholder}
-      className="border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-    />
+    <div>
+      <input
+        value={note}
+        onChange={handleInputChange}
+        placeholder={placeholder}
+        className="input"
+      />
+      <Button onClick={handleAddNote}>Add Note</Button>
+    </div>
   );
 };
 
