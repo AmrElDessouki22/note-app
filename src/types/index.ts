@@ -1,4 +1,4 @@
 export interface Note {
-  id: string;
-  content: string;
+  id: number;
+  text: string;
 }
