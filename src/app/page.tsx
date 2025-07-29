@@ -1,18 +1,16 @@
-import React from 'react';
-import Header from '@/components/ui/Header';
-import Sidebar from '@/components/ui/Sidebar';
-import NoteList from '@/components/features/NoteList';
+import NewNoteForm from '../components/features/NewNoteForm';
+import NoteList from '../components/features/NoteList';
+import { NotesProvider } from '../contexts/NotesContext';
 
-const HomePage: React.FC = () => {
+const Page = () => {
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <main className="flex-1">
-        <Header title="My Notes" />
+    <NotesProvider>
+      <div className="app-container">
+        <NewNoteForm />
         <NoteList />
-      </main>
-    </div>
+      </div>
+    </NotesProvider>
   );
 };
 
-export default HomePage;
+export default Page;
