@@ -3,10 +3,10 @@
 import React from 'react';
 import { Note } from '@/types';
 import Button from '../ui/Button';
-import { useNotes } from '@/contexts/NotesContext';
+import { NotesContext } from '@/contexts/NotesContext';
 
 const NoteItem: React.FC<{ note: Note }> = ({ note }) => {
-  const { deleteNote } = useNotes();
+  const { deleteNote } = React.useContext(NotesContext);
 
   return (
     <li className="flex justify-between items-center p-2 border-b">
