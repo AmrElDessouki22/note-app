@@ -11,13 +11,17 @@ export const metadata = {
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <NotesProvider>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow container mx-auto px-4">{children}</main>
-        <Footer />
-      </div>
-    </NotesProvider>
+    <html lang="en">
+      <body>
+        <NotesProvider>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow container mx-auto px-4">{children}</main>
+            <Footer />
+          </div>
+        </NotesProvider>
+      </body>
+    </html>
   );
 };
 
