@@ -22,7 +22,12 @@ const NewNoteForm = () => {
 
   return (
     <div className="new-note-form">
-      <Input value={noteText} onChange={handleInputChange} placeholder="Enter a new note" />
+      <Input 
+        value={noteText} 
+        onChange={handleInputChange} 
+        placeholder="Enter a new note" 
+        style={{ color: 'black' }} 
+      />
       <Button onClick={handleAddNote}>Add Note</Button>
     </div>
   );
