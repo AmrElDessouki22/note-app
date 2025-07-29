@@ -1,8 +1,18 @@
-export default function HomePage() {
+import React from 'react';
+import Header from '@/components/ui/Header';
+import Sidebar from '@/components/ui/Sidebar';
+import NoteList from '@/components/features/NoteList';
+
+const HomePage: React.FC = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold">Welcome to the Note App</h1>
-      <p className="mt-4">This is a comprehensive note-taking application.</p>
+    <div className="flex h-screen">
+      <Sidebar />
+      <main className="flex-1">
+        <Header title="My Notes" />
+        <NoteList />
+      </main>
     </div>
   );
-}
+};
+
+export default HomePage;
