@@ -1,8 +1,6 @@
 {
   "name": "note-app",
   "version": "1.0.0",
-  "description": "A comprehensive note-taking app built with Next.js and TypeScript.",
-  "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
