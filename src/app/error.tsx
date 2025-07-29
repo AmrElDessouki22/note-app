@@ -1,18 +1,25 @@
 'use client';
 
-import { ReactNode } from 'react';
+import React from 'react';
 
-interface ErrorBoundaryProps {
-  error: Error;
-  resetErrorBoundary: () => void;
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('ErrorBoundary caught an error', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
 }
 
-export default function ErrorBoundary({ error, resetErrorBoundary }: ErrorBoundaryProps) {
-  return (
-    <div role="alert" className="p-4 bg-red-100 text-red-700">
-      <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </div>
-  );
-}
+export default ErrorBoundary;
