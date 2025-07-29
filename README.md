@@ -1,36 +1,30 @@
 # Note App
 
-This is a comprehensive note-taking application built with Next.js 15+ and TypeScript. It supports creating, editing, and deleting notes with a modern, responsive design.
+This is a simple note-taking application built with Next.js 15+, TypeScript, and Tailwind CSS. It features a robust and responsive UI for managing notes effectively.
 
 ## Features
-- Note creation and management
-- User authentication
+- Add, delete, and view notes
 - Responsive design
-- Dark mode
-- Search functionality
+- Light/Dark mode
+- Persistent state with local storage
 
 ## Getting Started
 
-### Prerequisites
-- Node.js 14+
+First, run the development server:
 
-### Installation
-1. Clone the repository
-2. Run `npm install` to install dependencies
-3. Copy `.env.example` to `.env` and configure your environment variables
-4. Run `npm run dev` to start the development server
+```bash
+npm run dev
+```
 
-## Scripts
-- `dev`: Run the app in development mode
-- `build`: Build the app for production
-- `start`: Start the app in production mode
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Folder Structure
-- `src/app`: Application-specific pages
-- `src/components`: Reusable components
-- `src/hooks`: Custom hooks
-- `src/lib`: Utility functions and constants
-- `src/types`: TypeScript interfaces and types
+## Building for Production
+
+```bash
+npm run build
+npm start
+```
 
 ## License
+
 This project is licensed under the MIT License.
