@@ -35,8 +35,10 @@ export const NotesProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <NotesContext.Provider value={{ notes, addNote }}>
-      <Input value={inputValue} onChange={handleInputChange} />
-      <Button onClick={handleAddNote}>Add Note</Button>
+      <div style={{ color: 'black' }}>
+        <Input value={inputValue} onChange={handleInputChange} />
+        <Button onClick={handleAddNote}>Add Note</Button>
+      </div>
       {children}
     </NotesContext.Provider>
   );
