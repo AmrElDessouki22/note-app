@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useNotes } from '@/contexts/NotesContext';
+import { NotesContext } from '@/contexts/NotesContext';
 import NoteItem from './NoteItem';
 
 const NoteList: React.FC = () => {
-  const { notes } = useNotes();
+  const { notes } = React.useContext(NotesContext);
 
   return (
     <div className="p-4">
