@@ -1,45 +1,39 @@
-"use client";
+'use client';
 
-import { createContext, useState } from 'react';
-import { Note } from '../types';
-import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
+import React, { createContext, useContext, useState } from 'react';
+import { Note } from '@/types';
 
-interface NotesContextProps {
+interface NotesContextType {
   notes: Note[];
-  addNote: (text: string) => void;
+  addNote: (content: string) => void;
+  removeNote: (id: string) => void;
 }
 
-export const NotesContext = createContext<NotesContextProps>({
-  notes: [],
-  addNote: () => {},
-});
+const NotesContext = createContext<NotesContextType | undefined>(undefined);
 
 export const NotesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [notes, setNotes] = useState<Note[]>([]);
-  const [inputValue, setInputValue] = useState('');
 
-  const addNote = (text: string) => {
-    const newNote: Note = { id: Date.now(), text };
-    setNotes((prevNotes) => [...prevNotes, newNote]);
+  const addNote = (content: string) => {
+    const newNote: Note = { id: Date.now().toString(), content, createdAt: new Date() };
+    setNotes([...notes, newNote]);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleAddNote = () => {
-    addNote(inputValue);
-    setInputValue('');
+  const removeNote = (id: string) => {
+    setNotes(notes.filter(note => note.id !== id));
   };
 
   return (
-    <NotesContext.Provider value={{ notes, addNote }}>
-      <div style={{ color: 'black' }}>
-        <Input value={inputValue} onChange={handleInputChange} />
-        <Button onClick={handleAddNote}>Add Note</Button>
-      </div>
+    <NotesContext.Provider value={{ notes, addNote, removeNote }}>
       {children}
     </NotesContext.Provider>
   );
+};
+
+export const useNotes = (): NotesContextType => {
+  const context = useContext(NotesContext);
+  if (!context) {
+    throw new Error('useNotes must be used within a NotesProvider');
+  }
+  return context;
 };
