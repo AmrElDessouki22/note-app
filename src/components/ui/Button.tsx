@@ -1,39 +1,20 @@
-"use client";
+'use client';
 
-import { useState } from 'react';
+import React from 'react';
 
-interface ButtonProps {
+type ButtonProps = {
+  onClick: () => void;
   children: React.ReactNode;
-}
+};
 
-const Button: React.FC<ButtonProps> = ({ children }) => {
-  const [note, setNote] = useState('');
-  const [notes, setNotes] = useState<string[]>([]);
-
-  const handleClick = () => {
-    setNotes(prevNotes => [...prevNotes, note]);
-    setNote('');
-  };
-
+const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
   return (
-    <div>
-      <input 
-        value={note} 
-        onChange={(e) => setNote(e.target.value)} 
-        className="input" 
-        style={{ color: 'black' }} 
-      />
-      <button onClick={handleClick} className="btn">
-        {children}
-      </button>
-      <ul>
-        {notes.map((note, index) => (
-          <li key={index} style={{ color: 'black' }}>
-            {note}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <button
+      onClick={onClick}
+      className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+    >
+      {children}
+    </button>
   );
 };
 
